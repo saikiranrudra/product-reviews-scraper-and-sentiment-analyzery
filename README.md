@@ -6,6 +6,14 @@ This is a flask based web application which scrap reviews about the entered prod
 1. Python --version 3.8.5
 2. pip python package manager
 
+## Technology Used 👨‍💻
+1. Python
+2. flask
+3. mongodb
+4. textblob
+5. bootstrap
+
+
 ### How to run 🏃‍♂️ the application
 
 1. open project directory
