@@ -5,9 +5,11 @@ from utils.variables import Variables
 from bs4 import BeautifulSoup
 import re
 from pymongo import MongoClient
+from os import environ
 
 app = Flask(__name__)
-client = MongoClient('mongodb://localhost:27017/')
+password = environ.get("MONGODB_PASSWORD")
+client = MongoClient(f"mongodb+srv://saikiranrudra:{password}@cluster0.vu5gn.mongodb.net/scraper?retryWrites=true&w=majority")
 db = client["scraper"]
 products = db["products"]
 
