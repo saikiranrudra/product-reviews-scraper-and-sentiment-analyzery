@@ -10,9 +10,16 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous" >
 </head>
-<body style="background-color: #2c3e50;">
+<body style="background: #ec008c;
+    background: -webkit-linear-gradient(to right, #fc6767, #ec008c);
+    background: linear-gradient(to right, #fc6767, #ec008c);
+">
 
-    <div style="display: grid; place-content: center; height: 100vh; grid-template-rows: repeat(2, 1fr); margin: 1.3rem">
+    <div style="display: grid;
+        place-content: center;
+        height: 100vh;
+        grid-template-rows: repeat(2, 1fr);
+        margin: 1.3rem">
 
         <h1 class="display-4" style="text-align: center; color: #fff; align-self: end;">Product Analyser</h1>
         <form action="/reviews" method="POST">
@@ -24,7 +31,7 @@
                     placeholder="Search"
                     aria-label="Search"
                     style="margin-right: .3rem">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <button class="btn btn-primary" type="submit">Search</button>
             </div>
 
         </form>

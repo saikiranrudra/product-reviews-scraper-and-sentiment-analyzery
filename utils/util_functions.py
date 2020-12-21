@@ -12,7 +12,7 @@ def fetcher(url: str):
 def calculate_sentiment(reviews: list):
     result = [0, 0, 0]
     for review in reviews:
-        blob = TextBlob(review)
+        blob = TextBlob(review["comment"])
         polarity = blob.sentiment.polarity
 
         if polarity > 0:

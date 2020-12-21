@@ -4,6 +4,7 @@ from utils.util_functions import calculate_sentiment
 from utils.variables import Variables
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
+import re
 
 app = Flask(__name__)
 client = MongoClient('mongodb://localhost:27017/')
@@ -49,15 +50,24 @@ def reviews():
         reviews_soup = BeautifulSoup(reviews_page, "html.parser")
 
         # Extracing comments for html
-
-        reviews_divs = reviews_soup.find_all("div", class_="t-ZTKy")
+        reviews_divs = reviews_soup.find_all("div", class_="col _2wzgFH K0kLPL")
         reviews = []
 
         for review in reviews_divs:
-            div = str(review.find("div", class_="").findChildren("div", recursive=False)[0])
-            div_text = div.replace("<div class=\"\">", "").replace("</div>", "").replace("<br/>", "")
-            reviews.append(div_text)
+            print(type(review.find_all("div", class_="row")))
 
+            rating_tag = review.find("div", class_="_3LWZlK")
+            comment_tag = review.find("div", class_="")
+
+            heading = review.find("p", class_="_2-N8zT").string
+            rating = re.sub(r"<div\sclass=\"(\w\s*)+\">", "", str(rating_tag))
+            comment = str(comment_tag.findChildren("div", recursive=False)[0]) \
+                .replace("<div class=\"\">", "") \
+                .replace("</div>", "") \
+                .replace("<br/>", "")
+            reviews.append({"heading": heading, "rating": rating[0], "comment": comment})
+
+        print(reviews)
         sentiment = calculate_sentiment(reviews)
 
         total = len(reviews)
@@ -90,7 +100,6 @@ def reviews():
             )
     else:
         # render fetched from db
-
         # calculating sentiment
         total = len(product_from_db["reviews"])
         total = total if total > 0 else 1
