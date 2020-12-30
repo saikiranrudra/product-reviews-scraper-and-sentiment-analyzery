@@ -8,11 +8,12 @@ from pymongo import MongoClient
 from os import environ
 
 app = Flask(__name__)
-password = environ.get("MONGODB_PASSWORD")
+password = environ.get("MONGODB_PASSWORD") # for production
 client = MongoClient(f"mongodb+srv://saikiranrudra:{password}@cluster0.vu5gn.mongodb.net/scraper?retryWrites=true&w"
                      f"=majority")
 db = client["scraper"]
 products = db["products"]
+
 
 @app.route("/", methods=["GET"])
 def index():
@@ -128,9 +129,14 @@ def reviews():
             "reviews.html",
             len=1,
             title=search_string,
-            reviews=[{"heading": "No Reviews", "comment": "no reviews available for this product to scrap", "comment": 5}],
+            reviews=[{
+                "heading": "No Reviews",
+                "comment": "no reviews available for this product to scrap",
+                "rating": 5
+            }],
             sentiment=[0, 0, 0]
         )
+
 
 if __name__ == "__main__":
     app.run()

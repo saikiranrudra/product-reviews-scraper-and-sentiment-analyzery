@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Home</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link
-        rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous" >
-</head>
+{% include "header.html" %}
 <body style="background: #ec008c;
     background: -webkit-linear-gradient(to right, #fc6767, #ec008c);
     background: linear-gradient(to right, #fc6767, #ec008c);
@@ -22,7 +11,7 @@
         margin: 1.3rem">
 
         <h1 class="display-4" style="text-align: center; color: #fff; align-self: end;">Product Analyser</h1>
-        <form action="/reviews" method="POST">
+        <form action="/reviews" method="POST" id="form">
             <div style="display: flex; margin-top: .5rem">
                 <input
                     name="product_name"
@@ -31,15 +20,26 @@
                     placeholder="Search"
                     aria-label="Search"
                     required
+                    id="search"
                     style="margin-right: .3rem">
-                <button class="btn btn-primary" type="submit">Search</button>
+                <button class="btn btn-primary" type="submit" id="search-btn">Search</button>
             </div>
 
         </form>
-
-
     </div>
 
-
+    {% include "footer.html" %}
+    <script>
+        search_btn = document.getElementById("search-btn");
+        form = document.getElementById("form");
+        search = document.getElementById("search");
+        search_btn.addEventListener("click", () => {
+            if(search.value.length !== 0) {
+                form.submit();
+                search_btn.disabled = true;
+                search_btn.innerHTML = "loading...";
+            }
+        })
+    </script>
 </body>
 </html>
