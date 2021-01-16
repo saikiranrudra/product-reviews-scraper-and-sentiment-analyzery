@@ -10,7 +10,7 @@ This is a flask based web application which scrap reviews about the entered prod
 1. Python
 2. flask
 3. mongodb
-4. textblob
+4. beautifulsoup
 5. bootstrap
 
 
