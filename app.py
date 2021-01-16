@@ -8,7 +8,8 @@ from pymongo import MongoClient
 from os import environ
 
 app = Flask(__name__)
-password = environ.get("MONGODB_PASSWORD") # for production
+# password = environ.get("MONGODB_PASSWORD") # for production
+password = "saikiranr2000"
 client = MongoClient(f"mongodb+srv://saikiranrudra:{password}@cluster0.vu5gn.mongodb.net/scraper?retryWrites=true&w"
                      f"=majority")
 db = client["scraper"]

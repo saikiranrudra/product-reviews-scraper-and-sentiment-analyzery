@@ -24,3 +24,12 @@ This is a flask based web application which scrap reviews about the entered prod
 ```
 4. Above command install all the required libraries for the project
 5. After execution of the above command. run the app.py file
+
+
+## Preview
+1. **Home Screen**
+![Home Screen](./readmeAssets/ss_1.png)
+   
+
+2. **Reviews Screen**
+![Reviews Screen](./readmeAssets/ss_2.png)
